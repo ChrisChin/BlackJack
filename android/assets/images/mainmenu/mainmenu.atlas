@@ -1,0 +1,26 @@
+
+mainmenu.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+about
+  rotate: false
+  xy: 1, 605
+  size: 900, 300
+  orig: 900, 300
+  offset: 0, 0
+  index: -1
+rules
+  rotate: false
+  xy: 1, 303
+  size: 900, 300
+  orig: 900, 300
+  offset: 0, 0
+  index: -1
+startgame
+  rotate: false
+  xy: 1, 1
+  size: 900, 300
+  orig: 900, 300
+  offset: 0, 0
+  index: -1
