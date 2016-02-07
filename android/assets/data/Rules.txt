@@ -1,0 +1,19 @@
+BlackJack follows the traditional Rules of blackjack
+
+The aim of the game is to have a higher score hand than the dealer without going bust (score>21). The card's values are the face values with Jack Queen and King worth 10 and Ace worth 1 or 11.
+At the start of the game, the player and the dealer receive two cards each. The player's card are dealt face up while the dealer has one face down and one face up.
+After the cards have been dealt, the player can chose the action to take. The player can choose to take more cards (hit) one at a time or keep their current hand (stand).
+If the player's hand is over 21, they lose the round.
+
+Once the player stands, the dealer must hit until their score is at least 17. If the dealer goes bust, the player wins. The winner is the one with the largest hand.
+
+Advanced rules
+Split: If the player has 2 cards of the same rank, the player can choose to split and play out both hands
+Double Down: The player takes 1 card and ends their turn for double the reward.
+
+Chips
+The game starts with $2 of chips. The aim of the game is to see how many rounds you can play before spending all your chips.
+Regular: Win/Loss +$2/-$2
+BlackJack: +$3
+Split: Win/Loss (per split hand) +$1/$-1
+Double Down: Win/Loss $4/-$4

@@ -39,7 +39,6 @@ public class Renderer {
         this.cam.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
         this.cam.update();
         loadTextures();
-        blackJack.deal();
     }
 
     private void loadTextures() {

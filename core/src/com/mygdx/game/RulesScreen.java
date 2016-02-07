@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -11,18 +12,14 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class RulesScreen implements Screen {
     private Main main;
-    private String message =
-            "BlackJack follows the traditional Rules of blackjack \n \n"+
-            "Hit - gives the player a new card\n \n" +
-            "Split - splits a pair of cards of the same rank into two hands (does not include resplits)\n \n"+
-            "Double Down - allows the user to pick only 1 card and ends their turn. Allows the player to " +
-                "double down after a split\n \n"+
-            "Stand - ends the players turn\n \n"+
-            "New Game - Creates a new game with a new deck\n \n"+
-            "The deck has 6 sets of cards. The game automatically checks for bust and "+
-            "stands if the total is 21 or is blackjack";
+    private String message;
     private final int width = Gdx.graphics.getWidth();
     private final int height = Gdx.graphics.getHeight();
     private Stage stage;
@@ -48,6 +45,8 @@ public class RulesScreen implements Screen {
             }
         });
         stage.addActor(button);
+        FileHandle file = Gdx.files.internal("data/Rules.txt");
+        message = file.readString();
     }
 
     @Override

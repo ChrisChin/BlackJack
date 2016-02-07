@@ -23,9 +23,9 @@ public class GameScreen implements Screen{
 
     @Override
     public void show() {
-        blackJackController = new BlackJackController(this);
         buttonRenderer = new ButtonRenderer(this);
         blackJack = new BlackJack(this);
+        blackJackController = new BlackJackController(this,blackJack);
         renderer = new Renderer(this,blackJack);
     }
 
