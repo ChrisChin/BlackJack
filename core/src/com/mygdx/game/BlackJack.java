@@ -1,12 +1,7 @@
 package com.mygdx.game;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.mygdx.game.Card.Rank;
-import com.mygdx.game.Card.Suit;
 
 /**
  * @author Chris Chin
@@ -70,8 +65,6 @@ public class BlackJack {
             prefs.putInteger("highscore", 0);
         }
     }
-
-
 
     public Player getPlayer() {
         return player;

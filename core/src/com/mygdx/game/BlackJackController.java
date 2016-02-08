@@ -1,7 +1,6 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
@@ -215,7 +214,7 @@ public class BlackJackController {
      * Checks for BlackJack
      */
     public void deal() {
-        blackJack.setNumberofRounds(blackJack.getNumberofRounds()+1);
+        blackJack.setNumberofRounds(blackJack.getNumberofRounds() + 1);
         setAllowPlayerOptions(true);
         for(int i =0; i< 2; i++){
             drawCard(blackJack.getPlayer().getPrimaryHand());
@@ -295,6 +294,4 @@ public class BlackJackController {
     public boolean canDoubleDown(){
         return blackJack.isAllowPlayerOptions() && blackJack.getCurrentHand().getCardList().size() == 2 && blackJack.getMoney()>=4;
     }
-
-
 }

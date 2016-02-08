@@ -62,7 +62,7 @@ public abstract class InformationScreen {
         font.setScale(button.getHeight()/32);
         font.drawWrapped(spriteBatch,header,x,height*19/20 ,fontWidth);
 
-        //rules
+        //description
         float y = button.getY()- height/20;
         font.setScale(font.getScaleY()/2);
         font.drawWrapped(spriteBatch,message,x, y,width*18/20);
