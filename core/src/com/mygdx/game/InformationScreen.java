@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -11,17 +12,14 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 
-/**
- * Created by Chris on 8/02/2016.
- */
-public abstract class InformationScreen {
+public abstract class InformationScreen implements Screen {
     private final int width = Gdx.graphics.getWidth();
     private final int height = Gdx.graphics.getHeight();
     private Main main;
     private Stage stage;
     private Button button;
     private String header;
-    private String message;
+    private String content;
 
     public InformationScreen(Main main){
         this.main = main;
@@ -62,10 +60,10 @@ public abstract class InformationScreen {
         font.setScale(button.getHeight()/32);
         font.drawWrapped(spriteBatch,header,x,height*19/20 ,fontWidth);
 
-        //description
+        //content
         float y = button.getY()- height/20;
         font.setScale(font.getScaleY()/2);
-        font.drawWrapped(spriteBatch,message,x, y,width*18/20);
+        font.drawWrapped(spriteBatch, content,x, y,width*18/20);
         spriteBatch.end();
         spriteBatch.dispose();
         font.dispose();
@@ -75,7 +73,13 @@ public abstract class InformationScreen {
         this.header = header;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setContent(String content) {
+        this.content = content;
     }
+
+    @Override  public void resize(int width, int height) {}
+    @Override  public void pause(){}
+    @Override  public void resume(){}
+    @Override  public void hide(){}
+    @Override  public void dispose(){}
 }
