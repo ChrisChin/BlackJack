@@ -1,18 +1,29 @@
 package com.mygdx.game;
 
 public class Card{
+
+    //region global variables
     private Suit suit; // HEARTS, CLUBS, DIAMONDS, SPADES
     private Rank rank;
     private boolean isDoubleDown;
 
-    public boolean isDoubleDown() {
-        return isDoubleDown;
-    }
+    private static String[] suits = { "Hearts","Clubs","Diamonds","Spades"};
+    private static String[] ranks = { "2",
+                                      "3",
+                                      "4",
+                                      "5",
+                                      "6",
+                                      "7",
+                                      "8",
+                                      "9",
+                                      "10",
+                                      "Jack",
+                                      "Queen",
+                                      "King",
+                                      "Ace" };
+    //endregion
 
-    public void setDoubleDown(boolean isDoubleDown) {
-        this.isDoubleDown = isDoubleDown;
-    }
-
+    //region enums
     public enum Suit {
         HEARTS,
         CLUBS,
@@ -35,12 +46,11 @@ public class Card{
         KING,
         ACE
     }
+    //endregion
 
-    public Card(Suit suit, Rank rank) {
-        this.suit = suit;
-        this.rank = rank;
-        this.isDoubleDown = false;
-
+    //region getter
+    public boolean isDoubleDown() {
+        return isDoubleDown;
     }
 
     /**
@@ -48,7 +58,7 @@ public class Card{
      *
      * @return returns the suit of the card
      */
-    public Suit suit() {
+    public Suit getSuit() {
         return suit;
     }
 
@@ -57,17 +67,28 @@ public class Card{
      *
      * @return the rank of the card
      */
-    public Rank rank() {
+    public Rank getRank() {
         return rank;
     }
+    //endregion
 
-    private static String[] suits = { "Hearts","Clubs","Diamonds","Spades"};
-    private static String[] ranks = { "2 of ", "3 of ", "4 of ",
-            "5 of ", "6 of ", "7 of ", "8 of ", "9 of ", "10 of ", "Jack of ",
-            "Queen of ", "King of ", "Ace of " };
+    //region setter
+    public void setDoubleDown(boolean isDoubleDown) {
+        this.isDoubleDown = isDoubleDown;
+    }
+    //endregion
 
+    //region constructor
+    public Card(Suit suit, Rank rank) {
+        this.suit = suit;
+        this.rank = rank;
+        this.isDoubleDown = false;
+    }
+    //endregion
+
+    //region public functions
     public String toString() {
-        return ranks[rank.ordinal()] + suits[suit.ordinal()];
+        return ranks[rank.ordinal()] + " of " + suits[suit.ordinal()];
     }
 
     /**
@@ -77,7 +98,7 @@ public class Card{
      * @return the value of the card
      */
     public int getValue(){
-        switch(this.rank()){
+        switch(this.rank){
             case TWO: return 2;
             case THREE: return 3;
             case FOUR: return 4;
@@ -92,16 +113,34 @@ public class Card{
             case KING: return 10;
             case ACE: return 1;
         }
-        return 0;
-
+        throw new IllegalArgumentException("Unexpected Rank: " + this.rank.toString());
     }
 
+    /**
+     * Return the first letter of the suit used for the name of the image
+     * @return Returns the first letter of the suit used for the name of the image
+     */
+    public String getSuitImageLetter(){
+        return this.suit.toString().substring(0,1).toLowerCase();
+    }
+
+    /**
+     * Gets the image name
+     * @return
+     */
+    public String getImageName(){
+        int cardNumber = getCardImageNumber();
+        return getSuitImageLetter() + (cardNumber < 10 ? "0" : "") + cardNumber;
+    }
+    //endregion
+
+    //region private functions
     /**
      * Returns the card number 1- 13 Ace - King used for the name of the image
      * returns card number @return
      */
-    public int getCardImageNumber(){
-        switch(this.rank()){
+    private int getCardImageNumber(){
+        switch(this.rank){
             case TWO: return 2;
             case THREE: return 3;
             case FOUR: return 4;
@@ -116,26 +155,7 @@ public class Card{
             case KING: return 13;
             case ACE: return 1;
         }
-        return 0;
-
+        throw new IllegalArgumentException("Unexpected Rank: " + this.rank);
     }
-
-    /**
-     * Return the first letter of the suit used for the name of the image
-     * @return Returns the first letter of the suit used for the name of the image
-     */
-    public String getSuitImageLetter(){
-          return this.suit.toString().substring(0,1).toLowerCase();
-    }
-
-    public String getImageName(){
-        String suitLetter = getSuitImageLetter();
-        int cardNumber = getCardImageNumber();
-        return suitLetter + (cardNumber < 10 ? "0" : "") + cardNumber;
-
-    }
-
-    public Rank getRank(){
-        return rank;
-    }
+    //endregion
 }
