@@ -5,19 +5,40 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 public class GameScreen implements Screen{
+
+    //region global variables
     private BlackJack blackJack;
     private BlackJackController blackJackController;
     private Renderer renderer;
     private ButtonRenderer buttonRenderer;
     private Main main;
+    //endregion
 
-    // * Screen methods ***************************//
-
+    //region constructor
     public GameScreen(Main main){
         this.main = main;
+    }
+    //endregion
 
+    //region getters
+    public BlackJack getBlackJack() {
+        return blackJack;
     }
 
+    public BlackJackController getBlackJackController() {
+        return blackJackController;
+    }
+
+    public ButtonRenderer getButtonRenderer() {
+        return buttonRenderer;
+    }
+
+    public Main getMain() {
+        return main;
+    }
+    //endregion
+
+    //region public overrides
     @Override
     public void show() {
         buttonRenderer = new ButtonRenderer(this);
@@ -41,11 +62,12 @@ public class GameScreen implements Screen{
 
     @Override
     public void pause() {
+        //TODO work out what to pause here for running the background
     }
 
     @Override
     public void resume() {
-
+        //TODO work out what we need to resume after a pause
     }
 
     @Override
@@ -57,20 +79,5 @@ public class GameScreen implements Screen{
     public void dispose() {
         Gdx.input.setInputProcessor(null);
     }
-
-    public BlackJack getBlackJack() {
-        return blackJack;
-    }
-
-    public BlackJackController getBlackJackController() {
-        return blackJackController;
-    }
-
-    public ButtonRenderer getButtonRenderer() {
-        return buttonRenderer;
-    }
-
-    public Main getMain() {
-        return main;
-    }
+    //endregion
 }
