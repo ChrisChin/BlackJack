@@ -44,7 +44,8 @@ public class Card{
         JACK,
         QUEEN,
         KING,
-        ACE
+        ACE,
+        ACEHIGH
     }
     //endregion
 
@@ -92,13 +93,22 @@ public class Card{
     }
 
     /**
+     * See getValue(Rank rank)
+     * This is an overloads for getValue that uses the class's rank
+     * @return
+     */
+    public int getValue(){
+        return getValue(this.rank);
+    }
+
+    /**
      * Finds the value of the card (2 - 10) are worth the same respectively
      * Jack queen and King are worth 10
      * Ace is default to 1 but can be worth 11 and is calculated in hand.maxTotal() method
      * @return the value of the card
      */
-    public int getValue(){
-        switch(this.rank){
+    public static int getValue(Rank rank){
+        switch(rank){
             case TWO: return 2;
             case THREE: return 3;
             case FOUR: return 4;
@@ -112,8 +122,9 @@ public class Card{
             case QUEEN: return 10;
             case KING: return 10;
             case ACE: return 1;
+            case ACEHIGH: return 11;
         }
-        throw new IllegalArgumentException("Unexpected Rank: " + this.rank.toString());
+        throw new IllegalArgumentException("Unexpected Rank: " + rank.toString());
     }
 
     /**
@@ -154,6 +165,7 @@ public class Card{
             case QUEEN: return 12;
             case KING: return 13;
             case ACE: return 1;
+            case ACEHIGH: return 1; //This is the same image as the ACE card
         }
         throw new IllegalArgumentException("Unexpected Rank: " + this.rank);
     }

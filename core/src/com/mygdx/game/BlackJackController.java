@@ -9,6 +9,8 @@ public class BlackJackController {
     private GameScreen gameScreen;
     private BlackJack blackJack;
 
+    public static final int maxHandValue = 21;
+
     public BlackJackController(GameScreen gameScreen,BlackJack blackJack){
         this.gameScreen = gameScreen;
         this.blackJack = blackJack;
@@ -40,7 +42,7 @@ public class BlackJackController {
     public void hit(){
         Hand currentHand = blackJack.getCurrentHand();
         drawCard(currentHand); // draws a new card
-        if(currentHand.isBust()|| currentHand.maxTotal() == 21) stand();
+        if(currentHand.isBust()|| currentHand.maxTotal() == maxHandValue) stand();
         checkButtons();
     }
 
@@ -67,7 +69,7 @@ public class BlackJackController {
             player.getPrimaryHand().getCardList().remove(secondCard); // Removes the second card from the primary hand
             drawCard(player.getPrimaryHand());
             drawCard(player.getSecondaryHand());
-            if(player.getPrimaryHand().maxTotal() ==21){
+            if(player.getPrimaryHand().maxTotal() == maxHandValue){
                 stand();
             }
         }
@@ -100,13 +102,13 @@ public class BlackJackController {
         if(blackJack.isSplit() && !player.getPrimaryHand().isCompleted()){
             player.getPrimaryHand().setCompleted(true);
             currentHand = player.getSecondaryHand();
-            if(currentHand.maxTotal() ==21) stand();
+            if(currentHand.maxTotal() == maxHandValue) stand();
         }
         else {
             setAllowPlayerOptions(false);
             //if not bust and not blackjack
-            if((player.getPrimaryHand().maxTotal()<=21
-                    || blackJack.isSplit() && player.getSecondaryHand().maxTotal()<=21)
+            if((player.getPrimaryHand().maxTotal()<=maxHandValue
+                    || blackJack.isSplit() && player.getSecondaryHand().maxTotal()<= maxHandValue)
                     && !(player.getPrimaryHand().maxTotal()==21 && player.getPrimaryHand().getCardList().size() ==2)){
                 while (dealer.getPrimaryHand().maxTotal() < 17) {
                     drawCard(dealer.getPrimaryHand());
@@ -142,11 +144,11 @@ public class BlackJackController {
         Player player = blackJack.getPlayer();
         Player dealer = blackJack.getDealer();
         if(player.getSecondaryHand() ==null) handName = "";
-        if(hand.maxTotal()>21){
+        if(hand.maxTotal() > maxHandValue){
             blackJack.setMessage(blackJack.getMessage() + handName + "You went bust, Dealer wins \n");
             calculateScore(-2);
         }
-        else if(dealer.getPrimaryHand().maxTotal()> 21){
+        else if(dealer.getPrimaryHand().maxTotal()> maxHandValue){
             blackJack.setMessage(blackJack.getMessage() + handName + "Dealer went bust, You win \n");
             calculateScore(2);
         }
@@ -223,7 +225,7 @@ public class BlackJackController {
 //        player.getPrimaryHand().addCard(new Card(Suit.CLUBS,Rank.ACE));
 //        player.getPrimaryHand().addCard(new Card(Suit.DIAMONDS,Rank.ACE));
         blackJack.setCurrentHand(blackJack.getPlayer().getPrimaryHand());
-        if(blackJack.getCurrentHand().maxTotal() == 21){
+        if(blackJack.getCurrentHand().maxTotal() == maxHandValue){
             stand();
             blackJack.setMessage("You got BlackJack. You win");
             blackJack.setMoney(blackJack.getMoney()+1);
